@@ -5,6 +5,8 @@
 #
 class puppetlint::params {
 
+    $gem_package_name = 'puppet-lint'
+
     case $::osfamily {
         'Debian': {
             $package_name = 'ruby-puppet-lint'

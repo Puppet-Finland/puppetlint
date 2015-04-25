@@ -4,11 +4,20 @@
 #
 class puppetlint::install
 (
-    $ensure
+    $ensure,
+    $provider
 
 ) inherits puppetlint::params
 {
-    package { $::puppetlint::params::package_name:
-        ensure => $ensure,
+
+    # Determine what the package name should be
+    $active_package_name = $provider ? {
+        'gem'   => $::puppetlint::params::gem_package_name,
+        default => $::puppetlint::params::package_name,
+    }
+
+    package { $active_package_name:
+        ensure   => $ensure,
+        provider => $provider,
     }
 }
