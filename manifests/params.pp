@@ -11,6 +11,9 @@ class puppetlint::params {
         'Debian': {
             $package_name = 'ruby-puppet-lint'
         }
+        'RedHat': {
+            $package_name = 'rubygem-puppet-lint'
+        }
         default: {
             fail("Unsupported OS: ${::osfamily}")
         }
