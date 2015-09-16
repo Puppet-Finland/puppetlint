@@ -42,6 +42,10 @@ class puppetlint
 
 if $manage == 'yes' {
 
+    # On Puppet 4 server Ruby might actually not be installed, and the gem 
+    # provider would fail
+    include ::ruby
+
     class { '::puppetlint::install':
         ensure   => $ensure,
         provider => $provider,
